@@ -13,9 +13,11 @@ public class Main {
         switch (opcion){
             case 1://ingreso como cliente
                 String pin;
+                boolean ingreso;
                 do {
                 pin=JOptionPane.showInputDialog("Ingrese pin");
-                if (cliente.login(pin)){
+                ingreso=cliente.login(pin);
+                if (ingreso){
                     JOptionPane.showMessageDialog(null,"Clave correcta");
 
                     String clave;
@@ -30,10 +32,18 @@ public class Main {
                                 break;
 
                             case "2":
-                                String NuevoPin = JOptionPane.showInputDialog("Ingrese nuevo pin");
-                                JOptionPane.showMessageDialog(null, cliente.cambiarPin(NuevoPin));
+                            Boolean verificar;
+                            String NuevoPin = JOptionPane.showInputDialog("Ingrese nuevo pin");
 
-                                break;
+                            do {
+                                verificar=cliente.cambiarPin(NuevoPin);
+                                if(verificar){
+                                    JOptionPane.showMessageDialog(null,"Se cambio el pin correctamente");
+
+                                }else{NuevoPin = JOptionPane.showInputDialog("Ingrese otro nuevo pin");}
+                                
+                            } while (!verificar);
+                            break;
                         }
 
                     } while (!clave.equalsIgnoreCase("0"));
@@ -41,7 +51,7 @@ public class Main {
                 }else {  JOptionPane.showMessageDialog(null,"Clave incorrecta");
                 }
 
-                }while(!cliente.login(pin));
+                }while(!ingreso);
                 break;
             case 2://empleado
 

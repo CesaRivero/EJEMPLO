@@ -17,12 +17,12 @@ public class Cliente extends Persona{
        }else{return false;}
 
     }
-    public String cambiarPin(String pinNuevo){
+    public boolean cambiarPin(String pinNuevo){
        if (pinNuevo.equalsIgnoreCase(pin)){
-           return"El pin ingresado es igual al anterior";
+           return false;
        }else {
            this.setPin(pinNuevo);
-           return"Se ha cambiado correctamente su pin:"+this.getPin();}
+           return true;}
 
     }
 
